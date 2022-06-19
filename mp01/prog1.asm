@@ -1,4 +1,4 @@
-;
+;netid :yz69
 ; The code given to you here implements the histogram calculation that 
 ; we developed in class.  In programming video lecture, we will discuss 
 ;  how to prints a number in hexadecimal to the monitor.
@@ -26,6 +26,7 @@
 ; should be stored starting at x3F00, with the non-alphabetic count 
 ; at x3F00, and the count for each letter in x3F01 (A) through x3F1A (Z).
 ;
+
 ; table of register use in this part of the code
 ;    R0 holds a pointer to the histogram (x3F00)
 ;    R1 holds a pointer to the current position in the string
@@ -95,57 +96,67 @@ GET_NEXT
 	BRnzp COUNTLOOP		; go to start of counting loop
 
 
+; my program contains 2 layers, the outer layers uses an incrementing counter/offset to iterate between bins and chars.
+; the inner layers convers 16 bit binary to 4 bit hex, the inner layer have 4 cycle per data.
+;table of registors:
+;  R0,used for trap functions thus left unchanged until an out function is called
+;  R1,used as counter & offset for incrementing char that is being displayed and as pointer offset for memory location
+;  R2,primary registor that holds the 16bit binary data of num_of_char to be translated to 4 bit hex
+;  R3,DR for the binary 4bit bi-1bit hex interpratation
+;  R5,temp registor that holds predetermined values and offsets
+;  R6,same as R5, temp registor that holds predetermined values and offsets
+
 
 PRINT_HIST
-     AND R1,R1,#0 ;initialize r1 to 0, as offset that count to 27
+     AND R1,R1,#0        ;initialize r1 to 0, as offset that count to 27
 PHLOOP1
-     LD R5,ASCII_offset ;   
-     ADD R0,R1,R5 ;
-     OUT ;
-     LD R0,SPACE ;
+     LD R5,ASCII_offset  ; load the base offset for "@"  
+     ADD R0,R1,R5        ; calculating the correct ascii value to be printed
+     OUT                 ;
+     LD R0,SPACE         ; load ascii value ot be printed
      OUT
-     LD R6,HIST_ADDR ;
-     ADD R6,R1,R6 ;
-     LDR R2,R6,#0 ;
+     LD R6,HIST_ADDR     ; load in the pointer for the start of data
+     ADD R6,R1,R6        ; load in the correct pointer for the memeory to be loaded
+     LDR R2,R6,#0        ; load in memory content
      
 ;binary ot hex conversion
-     LD R4,COUNTDOWN ;
+     LD R4,COUNTDOWN     ; load in counter 4, for 16bit bi- 4bit hex conversion
 BTHLP     
-     AND R3,R3,#0 ;
-     ADD R2,R2,#0;
-     BRzp SKIP1 ;
-     ADD R3,R3,#8 ;
+     AND R3,R3,#0        ; initializing R3 as the 1 bit hex holder
+     ADD R2,R2,#0        ; setting cc for R2
+     BRzp SKIP1          ;detecting if first digit of data is 1
+     ADD R3,R3,#8        ;if the most significant bit for a 4bit bi is 1, convers to 8 in decimal
 SKIP1
-     ADD R2,R2,R2 ;
-     BRzp SKIP2 ;
-     ADD R3,R3,#4 ;
+     ADD R2,R2,R2        ;left shifting R2 
+     BRzp SKIP2          ;deteccting if the second digit of data is 1
+     ADD R3,R3,#4        ;the second digit if 1 convers to 4 in decimal
 SKIP2
-     ADD R2,R2,R2 ;
-     BRzp SKIP3 ;
-     ADD R3,R3,#2 ;
+     ADD R2,R2,R2        ;left shifting R2
+     BRzp SKIP3          ;detecting if the third digit of data is 1
+     ADD R3,R3,#2        ;the third digit if 1 convers to 2 in decimal
 SKIP3
-     ADD R2,R2,R2 ;
-     BRzp SKIP4 ;
-     ADD R3,R3,#1 ;
+     ADD R2,R2,R2        ;left shifting r2
+     BRzp SKIP4          ;detecting if the fourth digit of data is 1
+     ADD R3,R3,#1        ;the fourth digit if 1 convers to 1 in decimal
 SKIP4
-     ADD R2,R2,R2 ;
-     ADD R3,R3,#-10 ;
+     ADD R2,R2,R2        ;left shifting R2
+     ADD R3,R3,#-10      ;combined with the following step to detect if the hex number is greater than 9
      BRn SKIP5
-     LD R5,ASCII_offset_A
-     ADD R3,R3,R5
+     LD R5,ASCII_offset_A ;load in offset of the difference between 0 and A minus 10
+     ADD R3,R3,R5        ;load in the ascii value of the desired char minus ascii offset 0
 SKIP5
-     LD R5,ASCII_offset_0
-     ADD R0,R3,R5
-     OUT
-     ADD R4,R4,#-1 ;
-     BRp BTHLP
+     LD R5,ASCII_offset_0 ;load in the ascii value of 0+10 for R3 was subtracted by 10 in the previous step
+     ADD R0,R3,R5        ; calculating the correct ascii value to be printed
+     OUT 
+     ADD R4,R4,#-1       ; decrementing counter
+     BRp BTHLP           ; if counter greater than 1, loop back for the next 4bit
 ; END OF BINARY TO HEX LOOP
-     LD R0,LINESHIFT
+     LD R0,LINESHIFT     ; shifting lines on monitor
      OUT
-     ADD R1,R1,#1
-     ADD R5,R1,#-15
+     ADD R1,R1,#1        ;incrementing counter and offset for next char
+     ADD R5,R1,#-15      ;combined with next step subtracting counter by 27
      ADD R5,R5,#-12
-     BRn PHLOOP1
+     BRn PHLOOP1         ;detecting if all 27 char has been printed
 
      
       
