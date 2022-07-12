@@ -56,7 +56,7 @@ set_seed (const char seed_str[])
     }
     else{
         printf("set_seed: invalid seed\n");
-        return 0
+        return 0;
     }
 
 //    Example of how to use sscanf to read a single integer and check for anything other than the integer
@@ -137,50 +137,120 @@ make_guess (const char guess_str[], int* one, int* two,
 	    int* three, int* four)
 {
     int w,x,y,z;
+    int s1s = 0;
+    int s2s = 0;
+    int s3s = 0;
+    int s4s = 0;
+    int s1 =0 ;
+    int s2 =0 ;
+    int s3 =0 ;
+    int s4 =0 ;
     int perf = 0 ;
     int miss = 0 ;
     char post[2];
-    if (sscanf(guess_str, "%d%d%d%d%1s", &w, &x, &y, &z, post)==1){
-        if (w=0 && w>8){
+    if (sscanf(guess_str, "%d%d%d%d%1s", &w, &x, &y, &z, post)==4){
+        if (w==0 || w>8){
             printf ("make_guess: invalid guess\n");
             return 0;
         }
-        if (x=0 && x>8){
+        if (x==0 || x>8){
             printf ("make_guess: invalid guess\n");
             return 0;
         }
-        if (y=0 && y>8){
+        if (y==0 || y>8){
             printf ("make_guess: invalid guess\n");
             return 0;
         }
-        if (z=0 && z>8){
+        if (z==0 || z>8){
             printf ("make_guess: invalid guess\n");
             return 0;
         }
-        if (w = solution1){
-            perf = perf+1;
+        *one = w;
+        *two = x;
+        *three = y;
+        *four = z;
+
+        if (solution1 == w){
+            perf =perf + 1;
+            s1s = 1 ;
+            s1 = 1;
         }
-        else if (w = solution2 || w = solution3 || w = solution4){
-            miss = miss+1;
+        if (solution2 == x){
+            perf =perf + 1;
+            s2s = 1 ;
+            s2 = 1;
         }
-        if (x = solution2){
-            perf = perf+1;
+        if (solution3 == y){
+            perf =perf + 1;
+            s3s = 1 ;
+            s3 = 1;
+        } 
+        if (solution4 == z){
+            perf =perf + 1;
+            s4s = 1 ;
+            s4 = 1;
         }
-        else if (x = solution1 || x = solution3 || x = solution4){
-            miss = miss+1;
+        if (w==solution2 && s2s==0 && s1==0){
+            miss=miss+1;
+            s2s=1;
+            s1=1;
         }
-        if (y = solution3){
-            perf = perf+1;
-        }
-        else if (y = solution2 || y = solution1 || y = solution4){
-            miss = miss+1;
-        }
-        if (z = solution4){
-            perf = perf+1;
-        }
-        else if (z = solution2 || z = solution3 || z = solution1){
-            miss = miss+1;
-        }
+        if (w==solution3 && s3s==0 && s1==0){
+            miss=miss+1;
+            s3s=1;
+            s1=1;
+        } 
+        if (w==solution4 && s4s==0 && s1==0){
+            miss=miss+1;
+            s4s=1;
+            s1=1;
+        } 
+        if (x==solution1 && s1s==0 && s2==0){
+            miss=miss+1;
+            s1s=1;
+            s2=1;
+        } 
+        if (x==solution3 && s3s==0 && s2==0){
+            miss=miss+1;
+            s3s=1;
+            s2=1;
+        } 
+        if (x==solution4 && s4s==0 && s2==0){
+            miss=miss+1;
+            s4s=1;
+            s2=1;
+        } 
+        if (y==solution1 && s1s==0 && s3==0){
+            miss=miss+1;
+            s1s=1;
+            s3=1;
+        } 
+        if (y==solution2 && s2s==0 && s3==0){
+            miss=miss+1;
+            s2s=1;
+            s3=1;
+        } 
+        if (y==solution4 && s4s==0 && s3==0){
+            miss=miss+1;
+            s4s=1;
+            s3=1;
+        } 
+        if (z==solution1 && s1s==0 && s4==0){
+            miss=miss+1;
+            s1s=1;
+            s4=1;
+        } 
+        if (z==solution2 && s2s==0 && s4==0){
+            miss=miss+1;
+            s2s=1;
+            s4=1;
+        } 
+        if (z==solution3 && s3s==0 && s4==0){
+            miss=miss+1;
+            s3s=1;
+            s4=1;
+        }         
+
         printf ("With guess %d, you got %d perfect matches and %d misplaced matches.\n",guess_number,perf,miss);
         guess_number++;
         return 1;
