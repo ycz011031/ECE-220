@@ -45,6 +45,9 @@ static int solution4;
  * SIDE EFFECTS: initializes pseudo-random number generation using the function srand. Prints "set_seed: invalid seed\n"
  *               if string is invalid. Prints nothing if it is valid.
  */
+
+// this function will scan user input and count how many input are there.
+// if the input count is equal to 1, is will use srand and return 1
 int
 set_seed (const char seed_str[])
 {
@@ -93,6 +96,8 @@ set_seed (const char seed_str[])
  * RETURN VALUE: none
  * SIDE EFFECTS: records the solution in the static solution variables for use by make_guess, set guess_number
  */
+
+//in this part of code I just followed the algraithum given
 void
 start_game (int* one, int* two, int* three, int* four)
 {
@@ -132,19 +137,30 @@ start_game (int* one, int* two, int* three, int* four)
  *               or an error message (invalid guess)
  *               (NOTE: the output format MUST MATCH EXACTLY, check the wiki writeup)
  */
+
+// this function uses quite a dumb implementation to achieve the desired functionality
+// due to failed attempts on looping sturcture
+// it will scan user input and store tham in 4 different memory location
+// than try to match them with the soltuions
+// before that the function will determine if the input is valid
 int
 make_guess (const char guess_str[], int* one, int* two, 
 	    int* three, int* four)
 {
     int w,x,y,z;
+    //these are inputs
     int s1s = 0;
     int s2s = 0;
     int s3s = 0;
     int s4s = 0;
+    // s_s is the conditional code for their respective solution match
+    // the conditional code will be set to 1 once a solution is matched
     int s1 =0 ;
     int s2 =0 ;
     int s3 =0 ;
     int s4 =0 ;
+    // s_ is the conditional code for their respective guess input
+    // the conditional code will be set to 1 once a guess is paired
     int perf = 0 ;
     int miss = 0 ;
     char post[2];
@@ -165,11 +181,14 @@ make_guess (const char guess_str[], int* one, int* two,
             printf ("make_guess: invalid guess\n");
             return 0;
         }
+// at this stage, the we have varified that the guess input is valid
+// thus we set output
         *one = w;
         *two = x;
         *three = y;
         *four = z;
 
+// the following if structure is used to see if there is any perfect match
         if (solution1 == w){
             perf =perf + 1;
             s1s = 1 ;
@@ -190,6 +209,7 @@ make_guess (const char guess_str[], int* one, int* two,
             s4s = 1 ;
             s4 = 1;
         }
+// the following 12 if sturcture is used to see if there is misplace matches
         if (w==solution2 && s2s==0 && s1==0){
             miss=miss+1;
             s2s=1;
