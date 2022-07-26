@@ -12,7 +12,7 @@
  */
 maze_t * createMaze(char * fileName)
 {
-    int rows,cols,x,y,z,s;
+    int rows,cols,x,y,z;
     FILE*file = fopen(fileName,"r");//opens the text file in reading mode
     fscanf (file,"%d",&cols);//scan the width of the maze(num of cols)
     fscanf (file,"%d",&rows);//scan the height of the maze(num of rows)
@@ -20,33 +20,37 @@ maze_t * createMaze(char * fileName)
     maze_t * maze = (maze_t*)malloc(sizeof(maze_t));
     maze->cells = calloc(rows,sizeof(char*));//allocates space for pointer of each column
     // allocating space for each column
-    for (s=0;s<rows;s++){
-        maze->cells[s]=calloc(cols,sizeof(char));
+    for (x=0;x<rows;x++){
+        maze->cells[x]=calloc(cols,sizeof(char));
 
     }
     //setting width and height
     maze->height = rows;
     maze->width = cols;
     //getting data from file
-    char temp[rows][cols+2];
-    for (x=0;x<rows;x++){
-        fgets(temp[x],cols+2,file);        
-    }
-
+    char temp;
     //finding out where S & E are and storing temp in to cells
-    for (y=0;y<rows;y++){
-        for (z=0;z<cols;z++){
-            maze->cells[y][z]=temp[y][z];
-            if (temp[y][z] == 'S'){
+    for (y=0;y<rows+1;y++){
+        for (z=0;z<cols+1;z++){
+            fscanf(file,"%c",&temp);
+            if (temp != '\n') {
+                maze -> cells[y][z] = temp;
+            }
+        
+
+            if (temp == 'S'){
                 maze->startRow = y;
                 maze->startColumn = z;
             }
-            if (temp[y][z] == 'E'){
+            if (temp == 'E'){
                 maze->endRow = y;
                 maze->endColumn = z;
             }
         }
     }
+
+
+    
 
 
     
