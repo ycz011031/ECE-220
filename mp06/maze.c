@@ -12,8 +12,48 @@
  */
 maze_t * createMaze(char * fileName)
 {
+    int rows,cols,x,y,z,s;
+    FILE*file = fopen(fileName,"r");//opens the text file in reading mode
+    fscanf (file,"%d",&cols);//scan the width of the maze(num of cols)
+    fscanf (file,"%d",&rows);//scan the height of the maze(num of rows)
+    //allocating memory for cells
+    maze_t * maze = (maze_t*)malloc(sizeof(maze_t));
+    maze->cells = calloc(rows,sizeof(char*));//allocates space for pointer of each column
+    // allocating space for each column
+    for (s=0;s<rows;s++){
+        maze->cells[s]=calloc(cols,sizeof(char));
+
+    }
+    //setting width and height
+    maze->height = rows;
+    maze->width = cols;
+    //getting data from file
+    char temp[rows][cols+2];
+    for (x=0;x<rows;x++){
+        fgets(temp[x],cols+2,file);        
+    }
+
+    //finding out where S & E are and storing temp in to cells
+    for (y=0;y<rows;y++){
+        for (z=0;z<cols;z++){
+            maze->cells[y][z]=temp[y][z];
+            if (temp[y][z] == 'S'){
+                maze->startRow = y;
+                maze->startColumn = z;
+            }
+            if (temp[y][z] == 'E'){
+                maze->endRow = y;
+                maze->endColumn = z;
+            }
+        }
+    }
+
+
+    
+
+
     // Your code here. Make sure to replace following line with your own code.
-    return NULL;
+    return maze;
 }
 
 /*
@@ -23,8 +63,17 @@ maze_t * createMaze(char * fileName)
  * RETURN:        None
  * SIDE EFFECTS:  All memory that has been allocated for the maze is freed
  */
+
+//in this function i basically reversed the allocation process in the previous function
 void destroyMaze(maze_t * maze)
 {
+    int i,j;
+    j = maze->height;
+    for (i=0; i<j;i++){
+        free(maze->cells[i]);
+    }
+    free(maze->cells);
+    free(maze); 
     // Your code here.
 }
 
@@ -39,6 +88,16 @@ void destroyMaze(maze_t * maze)
  */
 void printMaze(maze_t * maze)
 {
+    int x,y,i,j;
+    x=maze->height;
+    y=maze->width;
+    for (i=0;i<x;i++){
+        for(j=0;j<y;j++){
+            printf("%c",maze->cells[i][j]);
+        }
+        printf("\n");
+    }
+    
     // Your code here.
 }
 
@@ -53,6 +112,33 @@ void printMaze(maze_t * maze)
  */ 
 int solveMazeDFS(maze_t * maze, int col, int row)
 {
+    if(col <0 || row <0 || col >= maze->width || row >= maze->height){
+        return 0;
+    }
+    if(maze->cells[row][col] != ' ' && maze->cells[row][col] != 'S' && maze->cells[row][col] != 'E'){
+        return 0;
+    }
+    if(maze->cells[row][col] == 'E'){
+        return 1;
+    }
+    maze->cells[row][col] = '*';
+
+    if (solveMazeDFS(maze,col-1,row)){
+        return 1;
+    }
+    if (solveMazeDFS(maze,col+1,row)){
+        return 1;
+    }
+    if (solveMazeDFS(maze,col,row-1)){
+        return 1;
+    }
+    if (solveMazeDFS(maze,col,row+1)){
+        return 1;
+    }
+    
+    maze->cells[row][col] = '~';
+
+    
     // Your code here. Make sure to replace following line with your own code.
     return 0;
 }
