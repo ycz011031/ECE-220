@@ -1,0 +1,282 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.82
+# Built for x86_64-redhat-linux-gnu
+# Copyright (C) 2010  Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Tue Jul 26 17:33:30 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# environment
+QTDIR = /usr/lib/qt-3.3
+# environment
+VSCODE_AGENT_FOLDER = /home/yz69/.vscode-server
+# environment
+MODULEPATH = /usr/share/modulefiles:/usr/share/Modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/etc/modulefiles/env:/etc/modulefiles/class:/etc/modulefiles/software
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# default
+MAKE_VERSION := 3.82
+# makefile
+CURDIR := /home/yz69/ece220
+# makefile
+SHELL = /bin/sh
+# environment
+LMODARCH = x86_64
+# environment
+LMOD_DIR = /usr/share/lmod/lmod/libexec
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+_ = /usr/bin/make
+# makefile
+MAKEFILE_LIST := 
+# environment
+HISTCONTROL = ignoredups
+# environment
+define BASH_FUNC_ml()
+() {  eval $($LMOD_DIR/ml_cmd "$@")
+}
+endef
+# environment
+XDG_DATA_DIRS = /home/yz69/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+QT_PLUGIN_PATH = /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+# environment
+LESSOPEN = ||/usr/bin/lesspipe.sh %s
+# environment
+VSCODE_CWD = /home/yz69
+# environment
+KRB5CCNAME = FILE:/tmp/krb5cc_1125762_bAdSgw
+# environment
+SSH_CONNECTION = 216.171.10.212 59780 192.17.9.162 22
+# environment
+PATH = /home/yz69/.vscode-server/bin/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/remote-cli:/usr/lib/qt-3.3/bin:/usr/local/bin:/usr/bin:/software/ews/bin:/usr/local/sbin:/usr/sbin:/software/ews/bin
+# environment
+LMOD_CMD = /usr/share/lmod/lmod/libexec/lmod
+# environment
+QT_GRAPHICSSYSTEM_CHECKED = 1
+# environment
+XDG_RUNTIME_DIR = /run/user/1125762
+# environment
+BASH_ENV = /usr/share/lmod/lmod/init/bash
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+SELINUX_USE_CURRENT_RANGE = 
+# environment
+LMOD_VERSION = 8.2.7
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver check-symlink
+# environment
+SOFTPATH = /software
+# automatic
+%F = $(notdir $%)
+# environment
+KDEDIRS = /usr
+# environment
+PWD = /home/yz69/ece220
+# environment
+VSCODE_IPC_HOOK_CLI = /run/user/1125762/vscode-ipc-2eeb9b14-1255-48ba-a717-3a166a6a6136.sock
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MANPATH = /usr/share/lmod/lmod/share/man:
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/yz69
+# environment
+MODULESHOME = /usr/share/lmod/lmod
+# environment
+LOGNAME = yz69
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
++F = $(notdir $+)
+# environment
+SELINUX_LEVEL_REQUESTED = 
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+LMOD_sys = Linux
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+HOSTNAME = linux-ssh-01.ews.illinois.edu
+# environment
+LMOD_arch = x86_64
+# environment
+MAKELEVEL := 0
+# environment
+SSH_ASKPASS = /usr/libexec/openssh/gnome-ssh-askpass
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 5
+# environment
+XDG_SESSION_ID = 44143
+# environment
+USER = yz69
+# environment
+QTLIB = /usr/lib/qt-3.3/lib
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+define BASH_FUNC_module()
+() {  eval $($LMOD_CMD bash "$@") && eval $(${LMOD_SETTARG_CMD:-:} -s sh)
+}
+endef
+# environment
+MODULEPATH_ROOT = /usr/share/modulefiles
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# environment
+CVS_RSH = ssh
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# environment
+SSH_CLIENT = 216.171.10.212 59780 22
+# environment
+MAIL = /var/spool/mail/yz69
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+DISTARCH = Linux-x86_64
+# environment
+BROWSER = /home/yz69/.vscode-server/bin/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/helpers/browser.sh
+# environment
+LMOD_PKG = /usr/share/lmod/lmod
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# environment
+SELINUX_ROLE_REQUESTED = 
+# default
+SUFFIXES := 
+# environment
+HISTSIZE = 1000
+# environment
+LMOD_ROOT = /usr/share/lmod
+# environment
+LMOD_SETTARG_FULL_SUPPORT = no
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+QTINC = /usr/lib/qt-3.3/include
+# default
+.RECIPEPREFIX := 
+# makefile
+.DEFAULT_GOAL := 
+# environment
+LANG = C
+# environment
+COBBLER_SERVER = cobbler-01.engrit.illinois.edu
+# variable set hash-table stats:
+# Load=92/1024=9%, Rehash=0, Collisions=8/111=7%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 60, inode 94518559): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 0 / lookups = 23 / hits = 23
+# # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
+# strcache used: total = 0 (154) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (8022) / max = 0 / min = 8176 / avg = 0
+
+# strcache hash-table stats:
+# Load=20/8192=0%, Rehash=0, Collisions=1/23=4%
+# Finished Make data base on Tue Jul 26 17:33:30 2022
+
+ 
+make: *** No rule to make target `all'.  Stop.
+

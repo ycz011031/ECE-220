@@ -12,10 +12,12 @@
  */
 maze_t * createMaze(char * fileName)
 {
+
     int rows,cols,x,y,z;
+
     FILE*file = fopen(fileName,"r");//opens the text file in reading mode
     fscanf (file,"%d",&cols);//scan the width of the maze(num of cols)
-    fscanf (file,"%d",&rows);//scan the height of the maze(num of rows)
+    fscanf (file,"%d\n",&rows);//scan the height of the maze(num of rows)
     //allocating memory for cells
     maze_t * maze = (maze_t*)malloc(sizeof(maze_t));
     maze->cells = calloc(rows,sizeof(char*));//allocates space for pointer of each column
@@ -55,8 +57,6 @@ maze_t * createMaze(char * fileName)
 
     
 
-
-    // Your code here. Make sure to replace following line with your own code.
     return maze;
 }
 
@@ -125,24 +125,39 @@ int solveMazeDFS(maze_t * maze, int col, int row)
     if(maze->cells[row][col] == 'E'){
         return 1;
     }
-    maze->cells[row][col] = '*';
+ 	
+    if(maze->cells[row][col] != 'S'){
+        maze->cells[row][col] = '*';
+    }  
 
-    if (solveMazeDFS(maze,col-1,row)){
-        return 1;
-    }
-    if (solveMazeDFS(maze,col+1,row)){
-        return 1;
-    }
-    if (solveMazeDFS(maze,col,row-1)){
-        return 1;
-    }
-    if (solveMazeDFS(maze,col,row+1)){
-        return 1;
-    }
-    
-    maze->cells[row][col] = '~';
 
-    
+     
+        
+	
+    if(solveMazeDFS(maze,col+1,row)){
+        return 1;
+    } 
+    // check right cell    
+
+    if(solveMazeDFS(maze,col,row+1)){
+        return 1;
+    }
+     // check cell above   
+	
+    if(solveMazeDFS(maze,col-1,row)){
+        return 1;
+    } 
+    // check cell below
+
+    if(solveMazeDFS(maze,col,row-1)){
+        return 1;
+    } 
+    // check cell left    
+
+    if(maze->cells[row][col] != 'S'){
+        maze->cells[row][col] = '~';
+    }
+
     // Your code here. Make sure to replace following line with your own code.
     return 0;
 }
