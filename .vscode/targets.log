@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Tue Jul 26 17:33:30 2022
+# Make data base, printed on Mon Aug  1 15:04:01 2022
 
 # Variables
 
@@ -61,9 +61,9 @@ LESSOPEN = ||/usr/bin/lesspipe.sh %s
 # environment
 VSCODE_CWD = /home/yz69
 # environment
-KRB5CCNAME = FILE:/tmp/krb5cc_1125762_bAdSgw
+KRB5CCNAME = FILE:/tmp/krb5cc_1125762_T1SvcD
 # environment
-SSH_CONNECTION = 216.171.10.212 59780 192.17.9.162 22
+SSH_CONNECTION = 216.171.10.212 57161 192.17.9.166 22
 # environment
 PATH = /home/yz69/.vscode-server/bin/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/remote-cli:/usr/lib/qt-3.3/bin:/usr/local/bin:/usr/bin:/software/ews/bin:/usr/local/sbin:/usr/sbin:/software/ews/bin
 # environment
@@ -91,7 +91,7 @@ KDEDIRS = /usr
 # environment
 PWD = /home/yz69/ece220
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/1125762/vscode-ipc-2eeb9b14-1255-48ba-a717-3a166a6a6136.sock
+VSCODE_IPC_HOOK_CLI = /run/user/1125762/vscode-ipc-9f5c2344-f06d-45f5-997e-1c80efc01e78.sock
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -117,7 +117,7 @@ LMOD_sys = Linux
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-HOSTNAME = linux-ssh-01.ews.illinois.edu
+HOSTNAME = linux-ssh-05.ews.illinois.edu
 # environment
 LMOD_arch = x86_64
 # environment
@@ -131,7 +131,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 5
 # environment
-XDG_SESSION_ID = 44143
+XDG_SESSION_ID = 38411
 # environment
 USER = yz69
 # environment
@@ -158,7 +158,7 @@ MAKEFLAGS = Rrqp
 # environment
 MFLAGS = -Rrqp
 # environment
-SSH_CLIENT = 216.171.10.212 59780 22
+SSH_CLIENT = 216.171.10.212 57161 22
 # environment
 MAIL = /var/spool/mail/yz69
 # automatic
@@ -210,7 +210,7 @@ COBBLER_SERVER = cobbler-01.engrit.illinois.edu
 
 # Directories
 
-# . (device 60, inode 94518559): 12 files, no impossibilities.
+# . (device 56, inode 94518559): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -275,7 +275,7 @@ GNUmakefile:
 
 # strcache hash-table stats:
 # Load=20/8192=0%, Rehash=0, Collisions=1/23=4%
-# Finished Make data base on Tue Jul 26 17:33:30 2022
+# Finished Make data base on Mon Aug  1 15:04:01 2022
 
  
 make: *** No rule to make target `all'.  Stop.
