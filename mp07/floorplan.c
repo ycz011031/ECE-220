@@ -267,11 +267,7 @@ int get_total_resource(node_t* ptr)
 node_t* init_slicing_tree(node_t* par, int n) {
   
   assert(n >= 0 && n < num_modules);
-  
-    
-
-    
-    if(n == num_modules - 1) {
+      if(n == num_modules - 1) {
       node_t * left = (node_t*)malloc(sizeof(node_t));
       left->module = &(modules[n]);
       left->cutline = UNDEFINED_CUTLINE;
@@ -296,6 +292,7 @@ node_t* init_slicing_tree(node_t* par, int n) {
     left->parent = par;
 
 
+
     if(par != NULL) {
 
       node_t * right = (node_t *)malloc(sizeof(node_t));
@@ -310,10 +307,10 @@ node_t* init_slicing_tree(node_t* par, int n) {
     
     init_slicing_tree(left, n+1);
     return left;
+
   
+    
 
-
-  // TODO:
 }
 
 
