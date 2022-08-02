@@ -123,7 +123,7 @@ void recut(node_t* ptr) {
   if(ptr->cutline == 0){
     ptr->cutline = H;    
   }
-  if(ptr->cutline == 1){
+  else if(ptr->cutline == 1){
     ptr->cutline = V;
   }
   // TODO:
@@ -213,7 +213,7 @@ void postfix_traversal(node_t* ptr, int* nth, expression_unit_t* expression) {
   postfix_traversal(ptr->right,nth,expression);
   expression[*nth].module = ptr->module;
   expression[*nth].cutline = ptr->cutline;
-  *nth++;
+  (*nth)++;
 
 
   // TODO:
@@ -268,35 +268,50 @@ node_t* init_slicing_tree(node_t* par, int n) {
   
   assert(n >= 0 && n < num_modules);
   
-  node_t*right=(node_t*)malloc(sizeof(node_t));
-  right->module=&(modules[n]);
-  right->cutline = UNDEFINED_CUTLINE;
+    
 
-  right->parent =par;
-  par->right = right;
-  right->left = NULL;
-  right->right = NULL;
+    
+    if(n == num_modules - 1) {
+      node_t * left = (node_t*)malloc(sizeof(node_t));
+      left->module = &(modules[n]);
+      left->cutline = UNDEFINED_CUTLINE;
+      left->left = NULL;
+      left->right = NULL;
+      left->parent = par;
+      par->left = left;
+      node_t * right = (node_t *)malloc(sizeof(node_t));
+      right->module  = &(modules[n-1]);
+      right->cutline = UNDEFINED_CUTLINE;
+      right->left = NULL;
+      right->right = NULL;
+      right->parent = par;
+      par->right = right;
 
-  node_t*left=(node_t* )malloc(sizeof(node_t));
-  
-  if(n+2==num_modules){
-    left->module = &(modules[n+1]);
-    left->cutline = UNDEFINED_CUTLINE;
+      return left;
+    }
 
-    left->parent =par;
-    par->left=left;
-    left->left = NULL;
-    left->right = NULL;
-    return left;
-  }
-  else{
+    node_t * left = (node_t *)malloc(sizeof(node_t));
     left->module = NULL;
     left->cutline = V;
-    left->parent=par;
-    par->left=left;
-    init_slicing_tree(left,n+1);
+    left->parent = par;
+
+
+    if(par != NULL) {
+
+      node_t * right = (node_t *)malloc(sizeof(node_t));
+      right->module  = &(modules[n-1]);
+      right->cutline = UNDEFINED_CUTLINE;
+      right->left = NULL;
+      right->right = NULL;
+      right->parent = par;
+      par->right = right;
+      par->left = left;
+    }  
+    
+    init_slicing_tree(left, n+1);
     return left;
-  }
+  
+
 
   // TODO:
 }
