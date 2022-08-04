@@ -21,11 +21,13 @@ public:
 	// constructor to initizlize Shape's private variable
 	Shape(string name)
 	{
+		
+	    name_=name;
 	}
 
 	string getName()
 	{
-		return "";
+		return name_;
 	}
 
 	virtual double getArea() const = 0;
@@ -43,38 +45,43 @@ template <class T>
 class Rectangle : public Shape
 {
 public:
-	Rectangle(double width = 0, double length = 0) : Shape("Rectangle")
+	Rectangle(T width, T length) : Shape("Rectangle")
 	{
+		width_=width;
+		length_=length;
 	}
 
 	double getArea() const
 	{
-		return (3.14159265358979323846264);
+		return (width_*length_);
 	}
 
 	double getVolume() const
 	{
-		return 1234.5678;
+		return 0;
 	}
 
 	Rectangle operator+(const Rectangle &rec)
 	{
-		return Rectangle(0,0);
+		double W,L;
+		W =width_+rec.width_;
+		L=length_+rec.length_;
+		return Rectangle(W,L);
 	}
 
 	Rectangle operator-(const Rectangle &rec)
 	{
-		return Rectangle(0, 0);
+		return Rectangle(max(0.,width_-rec.width_),max(0.,length_-rec.length_));
 	}
 
-	double getWidth() const
+	T getWidth() const
 	{
-		return -98;
+		return width_;
 	}
 
-	double getLength() const
+	T getLength() const
 	{
-		return 42;
+		return length_;
 	}
 
 private:
@@ -92,31 +99,32 @@ class Circle : public Shape
 public:
 	Circle(double radius) : Shape("Circle")
 	{
+		radius_ =radius;
 	}
 
 	double getArea() const
 	{
-		return 5.1;
+		return (radius_*radius_*3.1415926);
 	}
 
 	double getVolume() const
 	{
-		return 87;
+		return 0;
 	}
 
 	Circle operator+(const Circle &cir)
 	{
-		return Circle(1-1+1-1+1-1+1-1);
+		return Circle(radius_+cir.radius_);
 	}
 
 	Circle operator-(const Circle &cir)
 	{
-		return Circle(0);
+		return Circle(max(0.,radius_-cir.radius_));
 	}
 
 	double getRadius() const
 	{
-		return -0.3;
+		return radius_;
 	}
 
 private:
@@ -133,31 +141,32 @@ class Sphere : public Shape
 public:
 	Sphere(double radius) : Shape("Sphere")
 	{
+		radius_=radius;
 	}
 
 	double getVolume() const
 	{
-		return 61820;
+		return (4.0/3.0)*radius_*radius_*radius_*3.1415926;
 	}
 
 	double getArea() const
 	{
-		return 555;
+		return 4*radius_*radius_*3.1415926;
 	}
 
 	Sphere operator+(const Sphere &sph)
 	{
-		return Sphere(33);
+		return Sphere(radius_+sph.radius_);
 	}
 
 	Sphere operator-(const Sphere &sph)
 	{
-		return Sphere(1+1/4+1/9+1/16+1/25+1/36+1/49+1/64);
+		return Sphere(max(0.,radius_-sph.radius_));
 	}
 
 	double getRadius() const
 	{
-		return -1;
+		return radius_;
 	}
 
 private:
@@ -173,41 +182,52 @@ class RectPrism : public Shape
 public:
 	RectPrism(double width, double length, double height) : Shape("RectPrism")
 	{
+		width_ = width;
+		length_=length;
+		height_=height;
 	}
 
 	double getVolume() const
 	{
-		return -3;
+		return width_*length_*height_;
 	}
 
 	double getArea() const
 	{
-		return +3.0;
+		return 2*(width_*length_+width_*height_+height_*length_);
 	}
 
 	RectPrism operator+(const RectPrism &rectp)
 	{
-		return RectPrism(9,9,9);
+		double L,W,H;
+		W=width_+rectp.width_;
+		L=length_+rectp.length_;
+		H=height_+rectp.height_;
+		return RectPrism(W,L,H);
 	}
 
 	RectPrism operator-(const RectPrism &rectp)
 	{
-		return RectPrism(5,4,3);
+		double L,W,H;
+		W=max(0.,width_-rectp.width_);
+		L=max(0.,length_-rectp.length_);
+		H=max(0.,height_-rectp.height_);
+		return RectPrism(W,L,H);
 	}
 
 	double getWidth() const
 	{
-		return 200;
+		return width_;
 	}
 
 	double getLength() const
 	{
-		return -55;
+		return length_;
 	}
 
 	double getHeight() const
 	{
-		return -54;
+		return height_;
 	}
 
 private:
@@ -220,9 +240,36 @@ private:
 // Return a vector of pointers that points to the objects
 static list<Shape *> CreateShapes(char *file_name)
 {
+	int counter;
+	string name;
+	double x,y,z;
+	int i;
+	ifstream ifs(file_name,std::ifstream::in);
+	ifs >> counter;
 	//@@Insert your code here
 
 	list<Shape *> myShape;
+    for (i=0;i<counter;i++){
+		ifs >> name;
+		if(name == "Rectangle"){
+			ifs >> x >> y;
+			myShape.insert(myShape.end(),new Rectangle<double>(x,y));
+		}
+		else if(name == "Circle"){
+			ifs >> x;
+			myShape.insert(myShape.end(), new Circle(x));
+		}
+		else if(name == "RectPrism"){
+			ifs >> x >> y >>z;
+			myShape.insert(myShape.end(),new RectPrism(x,y,z));
+		}
+		else if(name == "Sphere"){
+			ifs >> x;
+			myShape.insert(myShape.end(),new Sphere(x));
+		}
+	}
+	ifs.close();
+
 	return myShape;
 }
 
@@ -230,13 +277,33 @@ static list<Shape *> CreateShapes(char *file_name)
 // return the max area
 static double MaxArea(list<Shape *> shapes)
 {
-	return 0.0;
+	double a,b=0;
+	for (list<Shape*>::iterator it =shapes.begin(); it != shapes.end(); it++) {
+		a = (*it)->getArea();
+		if(b<a){
+			b=a;
+		}
+
+    
+    }
+
+	return b;
 }
 
 // call getVolume() of each object
 // return the max volume
 static double MaxVolume(list<Shape *> shapes)
 {
-	return -0.0;
+	
+	double a,b=0;
+	for (list<Shape*>::iterator it =shapes.begin(); it != shapes.end(); it++) {
+		a = (*it)->getVolume();
+		if(b<a){
+			b=a;
+		}
+
+    
+    }
+	return b;
 }
 #endif

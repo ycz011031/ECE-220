@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug  2 17:17:31 2022
+# Make data base, printed on Wed Aug  3 18:43:32 2022
 
 # Variables
 
@@ -60,9 +60,9 @@ LESSOPEN = ||/usr/bin/lesspipe.sh %s
 # environment
 VSCODE_CWD = /home/yz69
 # environment
-KRB5CCNAME = FILE:/tmp/krb5cc_1125762_vX0uRw
+KRB5CCNAME = FILE:/tmp/krb5cc_1125762_nboSHW
 # environment
-SSH_CONNECTION = 216.171.10.212 52764 192.17.9.165 22
+SSH_CONNECTION = 216.171.10.212 53103 192.17.9.166 22
 # environment
 PATH = /home/yz69/.vscode-server/bin/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/remote-cli:/usr/lib/qt-3.3/bin:/usr/local/bin:/usr/bin:/software/ews/bin:/usr/local/sbin:/usr/sbin:/software/ews/bin
 # environment
@@ -90,7 +90,7 @@ KDEDIRS = /usr
 # environment
 PWD = /home/yz69/ece220
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/1125762/vscode-ipc-d6fdf807-5d0f-4155-bde4-9cf7a27e4cd3.sock
+VSCODE_IPC_HOOK_CLI = /run/user/1125762/vscode-ipc-f3278f30-26d7-4667-b70c-37469852c6a0.sock
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -116,7 +116,7 @@ LMOD_sys = Linux
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-HOSTNAME = linux-ssh-04.ews.illinois.edu
+HOSTNAME = linux-ssh-05.ews.illinois.edu
 # environment
 LMOD_arch = x86_64
 # environment
@@ -130,7 +130,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 5
 # environment
-XDG_SESSION_ID = 38528
+XDG_SESSION_ID = 38799
 # environment
 USER = yz69
 # environment
@@ -157,7 +157,7 @@ MAKEFLAGS = Rrqp
 # environment
 MFLAGS = -Rrqp
 # environment
-SSH_CLIENT = 216.171.10.212 52764 22
+SSH_CLIENT = 216.171.10.212 53103 22
 # environment
 MAIL = /var/spool/mail/yz69
 # automatic
@@ -209,9 +209,9 @@ COBBLER_SERVER = cobbler-01.engrit.illinois.edu
 
 # Directories
 
-# . (device 58, inode 94518559): 13 files, no impossibilities.
+# . (device 56, inode 94518559): 14 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -267,14 +267,14 @@ GNUmakefile:
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0 / lookups = 24 / hits = 24
+# # of strings in strcache: 0 / lookups = 25 / hits = 25
 # # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
-# strcache used: total = 0 (159) / max = 0 / min = 8176 / avg = 0
-# strcache free: total = 0 (8017) / max = 0 / min = 8176 / avg = 0
+# strcache used: total = 0 (164) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (8012) / max = 0 / min = 8176 / avg = 0
 
 # strcache hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=1/24=4%
-# Finished Make data base on Tue Aug  2 17:17:31 2022
+# Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
+# Finished Make data base on Wed Aug  3 18:43:32 2022
 
  
 make: *** No rule to make target `all'.  Stop.
